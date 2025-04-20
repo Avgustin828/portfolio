@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: 'Kanit', serif;
+}
+.bg-gif {
+	background-image: url('Kanye\ West\ GIF.gif');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-family: 'Kanit', serif;
+	z-index: -1;
+}
+.wrapper {
+	font-family: 'Kanit', serif;
+	width: 450px;
+	background-color: transparent;
+	border: 2px solid rgb(rgb(250, 250, 250)) 0.2;
+	backdrop-filter: blur(5px);
+	box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+	color: #fff;
+	border-radius: 25px;
+	padding: 30px 40px;
+}
+.wrapper h1 {
+	font-size: 35px;
+	text-align: center;
+}
+.wrapper .input_box {
+	width: 100%;
+	height: 50px;
+	margin: 30px 0;
+	position: relative;
+}
+.input_box input {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	border: 2px solid rgb(rgb(250, 250, 250)) 0.2;
+	border-radius: 40px;
+	font-size: 16px;
+	color: #fff;
+	padding: 25px 40px 20px 20px;
+}
+.input_box input::placeholder {
+	color: #fff;
+}
+.wrapper .remember {
+	display: flex;
+	justify-content: space-between;
+	font-size: 16px;
+	margin: -15px 0 15px;
+}
+.remember label input {
+	accent-color: #fff;
+	margin-left: 3px;
+}
+.remember a {
+	color: #fff;
+	text-decoration: none;
+}
+.wrapper .button {
+	width: 100%;
+	height: 45px;
+	background-color: #fff;
+	border: none;
+	outline: none;
+	border-radius: 40px;
+	box-shadow: 0 0 7px;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 20px;
+}
+.wrapper .register_link {
+	text-align: center;
+	margin-top: 20px;
+	font-size: 19px;
+}
+.register_link p a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 600;
+}

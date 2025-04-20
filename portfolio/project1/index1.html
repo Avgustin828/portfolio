@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rock Paper Scissors</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div id="language-toggle">
+			<button id="language-button" onclick="toggleLanguage()">EN</button>
+		</div>
+		<div id="theme-toggle">
+			<button id="theme-button" onclick="toggleTheme()">🌞</button>
+		</div>
+		<div id="game">
+			<button onclick="playGame('rock')">🪨</button>
+			<button onclick="playGame('scissors')">✂️</button>
+			<button onclick="playGame('paper')">📄</button>
+		</div>
+		<div id="result"></div>
+		<div id="visualization"></div>
+		<div
+			id="score"
+			data-en="Wins: 0 | Losses: 0 | Draws: 0"
+			data-ru="Победы: 0 | Поражения: 0 | Ничьи: 0"
+		>
+			Wins: 0 | Losses: 0 | Draws: 0
+		</div>
+		<button
+			id="reset"
+			onclick="resetGame()"
+			data-en="Reset Score"
+			data-ru="Сбросить счет"
+		>
+			Reset Score
+		</button>
+		<div id="history">
+			<h3 data-en="Game History:" data-ru="История игры:">Game History:</h3>
+			<ul id="history-list"></ul>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

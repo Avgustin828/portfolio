@@ -1,0 +1,889 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html,
+body {
+	margin: 0; /* Убираем отступы */
+	padding: 0; /* Убираем внутренние отступы */
+	width: 100%; /* Устанавливаем ширину на 100% */
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 15px 30px;
+	background-color: #000; /* Черный фон */
+	color: #fff;
+	position: fixed;
+	width: 100%; /* Хедер на всю ширину экрана */
+	top: 0;
+	z-index: 1000;
+	box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+header .burger-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	cursor: pointer;
+}
+
+header .burger-menu div {
+	width: 25px;
+	height: 3px;
+	background-color: #fff;
+	border-radius: 2px;
+}
+
+header .logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	margin-left: 95px; /* Сдвигаем логотип еще правее */
+}
+
+header .logo img {
+	height: 30px; /* Размер логотипа */
+	transition: transform 0.3s ease; /* Плавный переход */
+}
+
+header .logo img:hover {
+	transform: scale(1.2); /* Увеличение логотипа на 20% при наведении */
+}
+
+header .auth-buttons {
+	display: flex;
+	align-items: center;
+}
+
+header .auth-buttons button {
+	background: transparent;
+	border: 1px solid #fff;
+	color: #fff;
+	padding: 5px 15px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600; /* Semi-bold */
+	font-size: 14px;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+header .auth-buttons button:hover {
+	background-color: #fff;
+	color: #000;
+}
+
+/* Анимация для текста */
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Анимация для изображения */
+@keyframes zoomIn {
+	0% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100vh; /* Высота экрана */
+	overflow: hidden;
+	margin: 0; /* Убираем отступы */
+	padding: 0; /* Убираем внутренние отступы */
+	background-color: #000; /* Черный фон под изображением */
+}
+
+.hero img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /* Обрезка изображения для заполнения */
+	object-position: 25px center; /* Сдвигаем изображение вправо на 20px */
+	display: block; /* Убираем возможные пробелы вокруг изображения */
+	animation: zoomIn 2s ease-in-out; /* Анимация увеличения изображения */
+}
+
+.hero-text {
+	position: absolute;
+	top: 50%; /* Центрируем по вертикали */
+	left: 50%; /* Центрируем по горизонтали */
+	transform: translate(
+		-50%,
+		-50%
+	); /* Центрируем относительно точки top и left */
+	text-align: center; /* Выравниваем текст по центру */
+	color: #fff; /* Белый цвет текста */
+	font-family: 'Figtree', sans-serif; /* Шрифт Figtree */
+	width: 100%; /* Устанавливаем ширину текста */
+	max-width: 900px; /* Ограничиваем максимальную ширину текста */
+}
+
+.hero-text h1 {
+	font-size: 64px; /* Размер шрифта */
+	font-weight: bold; /* Жирный текст */
+	margin: 0; /* Убираем отступы */
+	line-height: 1.2; /* Межстрочный интервал для лучшей читаемости */
+}
+
+.burger-menu {
+	position: relative;
+	cursor: pointer;
+}
+
+.burger-menu div {
+	width: 25px;
+	height: 3px;
+	background-color: #fff;
+	margin: 5px 0;
+	border-radius: 2px;
+}
+
+.burger-menu-items {
+	display: none; /* Скрываем меню по умолчанию */
+	position: absolute;
+	top: 50px; /* Располагаем меню ниже бургер-иконки */
+	left: 10px; /* Отступ от левого края */
+	background-color: rgba(0, 0, 0, 0.9); /* Полупрозрачный черный фон */
+	padding: 15px 20px; /* Внутренние отступы для аккуратного отображения */
+	border-radius: 8px; /* Скругленные углы */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Тень для меню */
+	z-index: 1000; /* Поверх других элементов */
+	width: 200px; /* Фиксированная ширина меню */
+}
+
+.burger-menu-items.active {
+	display: block; /* Показываем меню при добавлении класса active */
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+.burger-menu-items a {
+	display: block; /* Каждая ссылка занимает отдельную строку */
+	color: #fff; /* Белый цвет текста */
+	text-decoration: none; /* Убираем подчеркивание */
+	margin: 10px 0; /* Отступы между ссылками */
+	font-family: 'Inter', sans-serif; /* Шрифт */
+	font-weight: 600; /* Полужирный текст */
+	font-size: 16px; /* Увеличиваем размер текста */
+	text-align: left; /* Выравниваем текст по левому краю */
+}
+
+.burger-menu:hover .burger-menu-items {
+	display: block; /* Показываем меню при наведении */
+}
+
+.booking-section {
+	position: absolute; /* Размещаем секцию поверх изображения */
+	top: calc(100% + 10px); /* Опускаем секцию на 10 пикселей ниже */
+	left: 50%; /* Центрируем по горизонтали */
+	transform: translate(
+		-50%,
+		-50%
+	); /* Центрируем относительно точки top и left */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(
+		245,
+		245,
+		245,
+		0.8
+	); /* Светло-серый фон с прозрачностью */
+	backdrop-filter: blur(5px); /* Легкий блюр */
+	padding: 30px 50px; /* Увеличиваем внутренние отступы */
+	border-radius: 15px; /* Скругленные углы */
+	max-width: 1200px;
+	width: 90%; /* Устанавливаем ширину секции */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для секции */
+	z-index: 10; /* Размещаем секцию поверх других элементов */
+}
+
+.booking-item {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	flex: 1;
+	margin: 0 15px; /* Увеличиваем отступы между элементами */
+}
+
+.booking-item label {
+	font-family: 'Inter', sans-serif;
+	font-size: 16px; /* Увеличиваем размер текста */
+	font-weight: 600;
+	color: #333;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px; /* Увеличиваем скругление */
+	padding: 15px; /* Увеличиваем внутренние отступы */
+	width: 100%;
+}
+
+.input-group .icon {
+	margin-right: 10px;
+	font-size: 18px; /* Увеличиваем размер иконки */
+	color: #888;
+}
+
+.input-group input {
+	border: none;
+	outline: none;
+	width: 100%;
+	font-family: 'Inter', sans-serif;
+	font-size: 16px; /* Увеличиваем размер текста */
+	color: #333;
+}
+
+.find-vehicle-btn {
+	background-color: #000;
+	color: #fff;
+	border: none;
+	padding: 15px 25px; /* Увеличиваем размер кнопки */
+	border-radius: 8px; /* Скругленные углы */
+	font-family: 'Inter', sans-serif;
+	font-size: 18px; /* Увеличиваем размер текста */
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.find-vehicle-btn:hover {
+	background-color: #333;
+}
+
+.rent-section {
+	padding: 40px 20px;
+	background-color: #f9f9f9;
+	margin-top: 90px; /* Добавляем отступ сверху */
+}
+
+.rent-category {
+	margin-bottom: 40px;
+}
+
+.rent-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px; /* Уменьшаем отступ снизу */
+}
+
+.rent-header h2 {
+	font-family: 'Inter', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	color: #333;
+	margin: 0;
+}
+
+.rent-header .view-all {
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	color: #000;
+	text-decoration: none;
+}
+
+.rent-grid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr); /* 6 колонок в ряду */
+	gap: 20px; /* Равномерное расстояние между элементами */
+	justify-items: center; /* Центрируем элементы по горизонтали */
+	align-items: center; /* Центрируем элементы по вертикали */
+}
+
+.rent-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	width: 150px; /* Фиксированная ширина */
+	height: 150px; /* Фиксированная высота */
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
+	text-align: center;
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rent-item img {
+	width: 60px; /* Размер изображения */
+	height: 60px;
+	margin-bottom: 10px; /* Отступ между изображением и текстом */
+	transition: transform 0.3s ease; /* Анимация увеличения */
+}
+
+.rent-item:hover img {
+	transform: scale(1.2); /* Увеличиваем изображение при наведении */
+}
+
+.rent-item:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.collection-section {
+	background-color: #f5f5f5; /* Задний фон */
+	padding: 60px 20px; /* Внутренние отступы */
+	text-align: center;
+}
+
+.collection-header h2 {
+	font-family: 'Figtree', sans-serif; /* Шрифт */
+	font-size: 48px; /* Размер шрифта */
+	font-weight: bold; /* Жирность */
+	color: #0f0f0f; /* Цвет текста */
+	margin-bottom: 20px; /* Отступ снизу */
+}
+
+.collection-header p {
+	font-family: 'Figtree', sans-serif; /* Шрифт */
+	font-size: 18px; /* Размер шрифта */
+	font-weight: 500; /* Medium */
+	color: #0f0f0f; /* Цвет текста */
+	margin-bottom: 40px; /* Отступ снизу */
+}
+
+.collection-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 15px; /* Расстояние между кнопками */
+	flex-wrap: wrap; /* Перенос кнопок на новую строку при необходимости */
+}
+
+.collection-btn {
+	font-family: 'Figtree', sans-serif; /* Шрифт */
+	font-size: 18px; /* Размер шрифта */
+	font-weight: 500; /* Medium */
+	color: #0f0f0f; /* Цвет текста */
+	background-color: #fff; /* Белый фон */
+	border: 1px solid #ddd; /* Граница */
+	border-radius: 25px; /* Скругленные углы */
+	padding: 10px 20px; /* Внутренние отступы */
+	cursor: pointer;
+	transition: all 0.3s ease; /* Плавный переход */
+}
+
+.collection-btn:hover {
+	background-color: #0f0f0f; /* Черный фон при наведении */
+	color: #fff; /* Белый текст при наведении */
+}
+
+.collection-btn.active {
+	background-color: #0f0f0f; /* Черный фон для активной кнопки */
+	color: #fff; /* Белый текст для активной кнопки */
+}
+
+.car-cards-section {
+	padding: 60px 20px;
+	background-color: #f9f9f9;
+}
+
+.car-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* 3 карточки в строке */
+	gap: 20px; /* Расстояние между карточками */
+	justify-content: center; /* Центрируем карточки по горизонтали */
+	align-items: center; /* Центрируем карточки по вертикали */
+}
+
+.car-card {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	padding: 20px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.car-image {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 10px 10px 0 0;
+}
+
+.car-card h3 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	color: #0f0f0f;
+	margin: 15px 0;
+}
+
+.price {
+	font-family: 'Figtree', sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	color: #0f0f0f;
+	margin: 10px 0;
+}
+
+.price span {
+	font-size: 24px;
+	font-weight: bold;
+	color: #0f0f0f;
+}
+
+.car-details {
+	display: flex;
+	justify-content: space-between;
+	font-family: 'Figtree', sans-serif;
+	font-size: 14px;
+	color: #888;
+	margin: 15px 0;
+}
+
+.car-details span {
+	flex: 1;
+	text-align: center;
+}
+
+.rent-now-btn {
+	background-color: #0f0f0f;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-family: 'Figtree', sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.rent-now-btn:hover {
+	background-color: #333;
+}
+
+.how-it-works {
+	background-color: #f9f9f9;
+	padding: 60px 20px;
+}
+
+.how-it-works-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.how-it-works-text h2 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	color: #0f0f0f;
+	margin-bottom: 20px;
+}
+
+.how-it-works-text p {
+	font-family: 'Figtree', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	color: #0f0f0f;
+	margin-bottom: 40px;
+	max-width: 800px; /* Уменьшаем максимальную ширину на 100px */
+}
+
+.how-it-works-content {
+	display: flex;
+	justify-content: space-between; /* Распределяем текст и изображение */
+	align-items: center; /* Выравниваем по вертикали */
+	gap: 40px; /* Расстояние между текстом и изображением */
+}
+
+.how-it-works-steps {
+	display: flex;
+	flex-direction: column;
+	gap: 20px; /* Расстояние между шагами */
+	flex: 1; /* Растягиваем блок с шагами */
+}
+
+.step {
+	display: flex;
+	align-items: flex-start;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+	font-size: 36px;
+	margin-right: 20px;
+	color: #0f0f0f;
+	background-color: #f5f5f5; /* Фон для иконок */
+	border-radius: 10px;
+	padding: 10px; /* Внутренние отступы для создания пространства вокруг иконки */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px; /* Фиксированная ширина */
+	height: 60px; /* Фиксированная высота */
+}
+
+.step-text h3 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #0f0f0f;
+	margin-bottom: 10px;
+}
+
+.step-text p {
+	font-family: 'Figtree', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	color: #888;
+}
+
+.how-it-works-image {
+	flex: 1; /* Растягиваем блок с изображением */
+	text-align: center;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+	width: 740px;
+	height: 638px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.how-it-works-image img {
+	width: auto;
+	height: 90%;
+	object-fit: contain;
+}
+
+.how-it-works-image {
+	flex: 1;
+	text-align: center;
+	background-color: #f5f5f5; /* Светло-серый фон */
+	border-radius: 10px; /* Скругленные углы */
+	width: 740px; /* Фиксированная ширина */
+	height: 638px; /* Фиксированная высота */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto; /* Центрируем контейнер */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для красоты */
+}
+
+.how-it-works-image img {
+	width: auto;
+	height: 90%; /* Уменьшаем изображение, чтобы оно вписывалось в контейнер */
+	object-fit: contain; /* Сохраняем пропорции изображения */
+}
+
+.services-benefits {
+	background-color: #0f0f0f; /* Темный фон */
+	color: #fff; /* Белый текст */
+	padding: 60px 20px;
+	text-align: center;
+}
+
+.services-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.services-header h2 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.services-header p {
+	font-family: 'Figtree', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	color: #ccc; /* Светло-серый текст */
+	margin-bottom: 40px;
+}
+
+.services-grid {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	flex-wrap: wrap; /* Для адаптивности */
+}
+
+.service-item {
+	background-color: #1a1a1a; /* Темно-серый фон для карточек */
+	border-radius: 10px;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	flex: 1;
+	min-width: 300px; /* Минимальная ширина карточки */
+}
+
+.service-icon {
+	font-size: 36px;
+	color: #fff;
+	background-color: #f5f5f5; /* Светло-серый фон для иконки */
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto 20px;
+}
+
+.service-item h3 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+.service-item p {
+	font-family: 'Figtree', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	color: #ccc; /* Светло-серый текст */
+}
+
+.testimonials {
+	background-color: #f9f9f9; /* Светло-серый фон */
+	padding: 60px 20px;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+	border-radius: 10px; /* Скругленные углы */
+	margin: 40px auto; /* Отступы сверху и снизу */
+	max-width: 900px; /* Ограничиваем ширину секции */
+}
+
+.testimonials-container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.testimonials h2 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	color: #0f0f0f;
+	margin-bottom: 40px;
+}
+
+.testimonial {
+	margin-bottom: 40px;
+}
+
+.testimonial-text {
+	font-family: 'Figtree', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	color: #333;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+.testimonial-author {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	justify-content: flex-start; /* Выровнять влево */
+}
+
+.testimonial-author img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для изображения */
+}
+
+.author-info h3 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #0f0f0f;
+	margin: 0;
+}
+
+.author-info p {
+	font-family: 'Figtree', sans-serif;
+	font-size: 14px;
+	color: #888;
+	margin: 0;
+}
+
+.testimonial-navigation {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.nav-btn {
+	background-color: #0f0f0f;
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 18px;
+	transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+	background-color: #333;
+}
+
+.footer {
+	background-color: #0f0f0f; /* Темный фон */
+	color: #fff; /* Белый текст */
+	padding: 60px 20px;
+	text-align: center;
+}
+
+.footer-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.footer-download h2 {
+	font-family: 'Figtree', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.footer-download p {
+	font-family: 'Figtree', sans-serif;
+	font-size: 16px;
+	color: #ccc; /* Светло-серый текст */
+	margin-bottom: 30px;
+}
+
+.download-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.download-btn img {
+	width: 150px; /* Размер кнопок App Store и Google Play */
+}
+
+.footer-bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 40px;
+	border-top: 1px solid #333; /* Линия сверху */
+	padding-top: 20px;
+}
+
+.footer-logo img {
+	width: 120px; /* Размер логотипа */
+}
+
+.footer-links {
+	display: flex;
+	gap: 20px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.footer-links li a {
+	font-family: 'Figtree', sans-serif;
+	font-size: 14px;
+	color: #fff;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.footer-links li a:hover {
+	color: #ccc; /* Светло-серый цвет при наведении */
+}
+
+.footer-socials {
+	display: flex;
+	gap: 15px;
+}
+
+.footer-socials a img {
+	width: 20px; /* Размер иконок социальных сетей */
+	transition: transform 0.3s ease;
+}
+
+.footer-socials a img:hover {
+	transform: scale(1.2); /* Увеличение при наведении */
+}
+
+.footer-socials .social-icon {
+	font-size: 20px;
+	color: #fff;
+	margin: 0 10px;
+	transition: color 0.3s ease;
+}
+
+.footer-socials .social-icon:hover {
+	color: #ccc; /* Светло-серый цвет при наведении */
+}
+
+.download-buttons .download-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 16px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #333;
+	padding: 10px 20px;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+.download-buttons .download-btn:hover {
+	background-color: #555;
+}
+
+.download-buttons .download-btn i {
+	font-size: 20px;
+}
